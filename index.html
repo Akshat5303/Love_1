@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <style>
+        /* CSS: The Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Animated Background Gradient */
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* The Glass Card */
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px;
+            text-align: center;
+            max-width: 80%;
+            width: 350px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* The Button */
+        .btn {
+            background-color: white;
+            color: #e73c7e;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            top: -1vh;
+            transform: translateY(0);
+            font-size: 1.5rem;
+            animation: fall 3s linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+            }
+        }
+        
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1 id="greeting">Hey Cutie</h1>
+        
+        <p>I wrote some code, just to make you smile today.</p>
+        
+        <button class="btn" onclick="celebrate()">Click Me</button>
+
+        <div id="secret" class="hidden-message">
+            You make my world colorful! 🌟
+        </div>
+    </div>
+
+    <script>
+        // JavaScript: The Interactivity
+
+        function celebrate() {
+            // 1. Reveal the secret message
+            const secret = document.getElementById('secret');
+            secret.style.display = 'block';
+            
+            // 2. Change the button text
+            const btn = document.querySelector('.btn');
+            btn.innerText = "Look at the screen! ❤️";
+            
+            // 3. Create Heart Rain
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️🌸'; 
+            
+            // Randomize position and size
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s"; 
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            
+            document.body.appendChild(heart);
+
+            // Remove heart after animation to keep browser fast
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
